@@ -3,7 +3,7 @@ const APP_FILES = [
   "./",
   "./index.html",
   "./manifest.webmanifest",
-  "./icon.svg"
+  "./download.jpg"
 ];
 
 self.addEventListener("install", event => {
