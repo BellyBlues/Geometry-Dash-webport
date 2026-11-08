@@ -1,4 +1,6 @@
-const CACHE_NAME = "geometry-dash-pwa-v1";
+
+const CACHE_NAME = "geometry-dash-pwa-v2";
+
 const APP_FILES = [
   "./",
   "./index.html",
@@ -35,15 +37,14 @@ self.addEventListener("fetch", event => {
   const request = event.request;
   const url = new URL(request.url);
 
-  if (
-    request.method !== "GET" ||
-    url.origin !== self.location.origin
-  ) return;
+  if (request.method !== "GET") return;
 
-  if (request.mode === "navigate") {
+  if (url.origin === self.location.origin) {
     event.respondWith(
-      fetch(request).catch(async () => {
-        return await caches.match("./index.html");
+      caches.match(request).then(cached => {
+        if (cached) return cached;
+
+        return fetch(request);
       })
     );
   }
