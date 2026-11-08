@@ -1511,5 +1511,17 @@ var audio=window.Module&&window.Module.gdAudioContext;
 if(audio&&audio.state==='suspended')audio.resume();
 if(!document.fullscreenElement){var button=document.getElementById('fsBtn');if(button)button.click();}
 }
-document.addEventListener('pointerdown',firstPointerDown,true);
-})();</script></body></html>
+</script>
+
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("/sw.js")
+      .then(() => console.log("PWA ready!"))
+      .catch(error => console.error("PWA error:", error));
+  });
+}
+</script>
+
+</body>
+</html>
